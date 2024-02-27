@@ -44,7 +44,7 @@ func (rr *ReplicasRecommender) PreRecommend(ctx *framework.RecommendationContext
 func (rr *ReplicasRecommender) Recommend(ctx *framework.RecommendationContext) error {
 	p := ctx.PredictorMgr.GetPredictor(predictionapi.AlgorithmTypeDSP)
 	timeNow := time.Now()
-	caller := fmt.Sprintf(rr.Name(), klog.KObj(ctx.RecommendationRule), ctx.RecommendationRule.UID)
+	caller := fmt.Sprintf(callerFormat, klog.KObj(ctx.RecommendationRule), ctx.RecommendationRule.UID)
 
 	// get workload cpu usage
 	tsListPrediction, err := utils.QueryPredictedTimeSeriesOnce(p, caller,
